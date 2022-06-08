@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select class="form-control mx-auto w-auto" style="margin-bottom: 15px;" name="symbol" placeholder="stock name">
+                <option>select stock</option>
+                {% for row in stocks_owned%}
+                <option>{{row["stock"]}}</option>
+                {% endfor %}
+            </select>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="shares" placeholder="number of shares" type="number">
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}

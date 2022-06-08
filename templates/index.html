@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% block title %} Home {% endblock %} {% block main
+%}
+<ul class="navbar-nav ms-auto mt-2"></ul>
+<br />
+<div>
+  <h2>Inventory</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>stock Name</th>
+        <th>number of stock</th>
+        <th>current price</th>
+        <th>total</th>
+      </tr>
+    </thead>
+    {% for row in user_data %}
+    <tr>
+      <th>{{row["stock"].upper()}}</th>
+      <th>{{row["shares"]}}</th>
+      <th>{{row["current_price"] | usd}}</th>
+      <th>{{row["total"] | usd}}</th>
+    </tr>
+    {% endfor%}
+  </table>
+  <br />
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>current cash</th>
+        <th>grand total</th>
+      </tr>
+      <tr>
+        <th>{{cash[0]["cash"] | usd}}</th>
+        <th>{{total_value | usd}}</th>
+      </tr>
+    </thead>
+
+    {% endblock %}
+  </table>
+</div>

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div >
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Total Price</th>
+                <th>remaining cash</th>
+            </tr>
+            <tr>
+                <th>{{total_price | usd}}</th>
+                <th>{{casho[0]["cash"] | usd}}</th>
+            </tr>
+        </thead>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    results
+{% endblock %}
+
+{% block main %}
+<div >
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>price</th>
+                <th>Symbol</th>
+            </tr>
+            <tr>
+                <td>{{quote["name"]}}</td>
+                <td>${{quote["price"]}}</td>
+                <td>{{quote["symbol"]}}</td>
+            </tr>
+        </thead>
+</div>
+{% endblock %}
