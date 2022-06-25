@@ -64,7 +64,7 @@ def index():
 def buy():
     """Buy shares of stock"""
     if request.method == "POST":
-        symbol = request.form.get("symbol")
+        symbol = request.form.get("symbol").upper()
         shares = request.form.get("shares")
         s_check = int(shares.isnumeric())
         if not s_check:
@@ -249,8 +249,9 @@ def change():
             return apology("NEW Password REQUIRED")
         old_hash = db.execute("SELECT hash FROM users WHERE username = ?", session["user_name"])
         hashed1 = generate_password_hash(password)
-        if old_hash == hashed1:
-            return apology("NEW Password can't be the same as Old Password")
+        if check_password_hash(old_hash[0]["hash"], password):
+            return apology("don't use the same old password")
+
         db.execute("UPDATE users SET hash = ? WHERE username = ?", hashed1, session["user_name"])
         return redirect("/")
     else:
