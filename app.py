@@ -53,10 +53,13 @@ def index():
     
     cash = db.execute("SELECT cash FROM users WHERE username = ?", session["user_name"])
     totals = db.execute("SELECT total FROM logbook WHERE user_name = ?", session["user_name"])
-    total_value = float(cash[0]["cash"])
+    total_value = cash[0]["cash"]
+    rows = 0
     for row in totals:
-        total_value += row["total"]
-    return render_template("index.html", user_data=user_data, cash=cash, total_value=total_value)
+        rows += row["total"]
+        
+    total_value += rows
+    return render_template("index.html", user_data=user_data, cash=cash, total_value=total_value, rows=rows)
 
 
 @app.route("/buy", methods=["GET", "POST"])
