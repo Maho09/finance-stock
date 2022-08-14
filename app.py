@@ -44,7 +44,7 @@ def after_request(response):
 def index():
     """Show portfolio of stocks"""
     user_data = db.execute(
-        "SELECT logbook.stock, logbook.shares, logbook.current_price, logbook.total FROM logbook WHERE user_name = ?", session["user_name"])
+        "SELECT logbook.stock, logbook.shares, logbook.current_price, logbook.total FROM logbook WHERE user_name = ? order by logbook.shares desc", session["user_name"])
     
     for row in user_data:
         look = lookup(row["stock"]) 
